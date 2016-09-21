@@ -2,14 +2,15 @@ package com.ontestautomation.testworksconf.restassured;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
-import io.restassured.RestAssured;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+import io.restassured.RestAssured;
 
 public class RestAssuredExercises1 {
 	
-	@Before
+	@BeforeClass
 	public void initPath() {
 		
 		RestAssured.baseURI = "http://localhost:9876";

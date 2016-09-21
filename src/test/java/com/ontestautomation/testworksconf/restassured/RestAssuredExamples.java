@@ -3,7 +3,7 @@ package com.ontestautomation.testworksconf.restassured;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class RestAssuredExamples {
 	
