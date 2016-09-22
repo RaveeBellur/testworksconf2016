@@ -2,11 +2,19 @@ package com.ontestautomation.testworksconf.restassured.answers;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
+import io.restassured.RestAssured;
 
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class RestAssuredAnswers2 {
+	
+	@BeforeClass
+	public void initPath() {
+		
+		RestAssured.baseURI = "http://localhost:9876";
+	}
 	
 	/*******************************************************
 	 * Create a DataProvider that specifies in which country
