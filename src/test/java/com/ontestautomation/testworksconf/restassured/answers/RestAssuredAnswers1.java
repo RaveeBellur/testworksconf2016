@@ -49,7 +49,7 @@ public class RestAssuredAnswers1 {
 	}
 	
 	/*******************************************************
-	 * Send a GET request to /api/f1/2015/drivers.json
+	 * Send a GET request to /api/f1/2016/drivers.json
 	 * and check that the response is in JSON format 
 	 ******************************************************/
 	
