@@ -2,6 +2,9 @@ package com.ontestautomation.testworksconf.restassured;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.http.ContentType;
+import io.restassured.specification.ResponseSpecification;
 
 import org.testng.annotations.Test;
 
@@ -49,5 +52,26 @@ public class RestAssuredExamples {
 			get("http://ergast.com/api/f1/drivers/{driverName}.json").
 		then()
 			.body("MRData.DriverTable.Drivers.permanentNumber[0]",equalTo("33"));			
+	}
+	
+	@Test
+	public void useResponseSpecBuilder() {
+		
+		ResponseSpecBuilder rsBuilder = new ResponseSpecBuilder();
+		
+		rsBuilder.
+			expectStatusCode(200).
+				expectContentType(ContentType.JSON);
+		
+		ResponseSpecification respSpec = rsBuilder.build();
+		
+		given().
+		when().
+			get("http://localhost:9876/us/90210").
+		then().
+			spec(respSpec).
+			and().
+			assertThat().
+			body("country", equalTo("United States"));
 	}
 }

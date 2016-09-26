@@ -3,6 +3,9 @@ package com.ontestautomation.testworksconf.restassured.answers;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 import io.restassured.RestAssured;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.http.ContentType;
+import io.restassured.specification.ResponseSpecification;
 
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -45,6 +48,26 @@ public class RestAssuredAnswers4 {
 	}
 	
 	/*******************************************************
+	 * Create a ResponseSpecification that checks whether:
+	 * - the response has statusCode 200
+	 * - the response contentType is JSON
+	 * - the value of MRData.CircuitTable.Circuits.circuitName[0]
+	 *   is equal to 'Albert Park Grand Prix Circuit'
+	 ******************************************************/
+	
+	ResponseSpecification respSpec;
+	
+	@BeforeClass
+	public void createResponseSpecification() {
+		
+		respSpec = new ResponseSpecBuilder().
+				expectStatusCode(200).
+				expectContentType(ContentType.JSON).
+				expectBody("MRData.CircuitTable.Circuits.circuitName[0]", equalTo("Albert Park Grand Prix Circuit")).
+				build();		
+	}
+	
+	/*******************************************************
 	 * Request a list of payments for this account and check
 	 * that the number of payments made equals 4.
 	 * Use OAuth2 authenticatie with the previously stored
@@ -64,5 +87,22 @@ public class RestAssuredAnswers4 {
 		then().
 			assertThat().
 			body("paymentsCount",equalTo(4));
+	}
+	
+	/*******************************************************
+	 * Retrieve the circuit data for the first race in 2014
+	 * Use the previously created ResponseSpecification to
+	 * execute the specified checks
+	 * Use /api/f1/2014/1/circuits.json
+	 ******************************************************/
+	
+	@Test
+	public void useResponseSpecification() {
+		
+		given().
+		when().
+			get("/api/f1/2014/1/circuits.json").
+		then().
+			spec(respSpec);
 	}
 }

@@ -28,6 +28,19 @@ public class RestAssuredExercises4 {
 	}
 	
 	/*******************************************************
+	 * Create a ResponseSpecification that checks whether:
+	 * - the response has statusCode 200
+	 * - the response contentType is JSON
+	 * - the value of MRData.CircuitTable.Circuits.circuitName[0]
+	 *   is equal to 'Albert Park Grand Prix Circuit'
+	 ******************************************************/
+	
+	@BeforeClass
+	public void createResponseSpecification() {
+		
+	}
+	
+	/*******************************************************
 	 * Request a list of payments for this account and check
 	 * that the number of payments made equals 4.
 	 * Use OAuth2 authenticatie with the previously stored
@@ -37,6 +50,21 @@ public class RestAssuredExercises4 {
 	
 	@Test
 	public void checkNumberOfPayments() {
+		
+		given().
+		when().
+		then();
+	}
+	
+	/*******************************************************
+	 * Retrieve the circuit data for the first race in 2014
+	 * Use the previously created ResponseSpecification to
+	 * execute the specified checks
+	 * Use /api/f1/2014/1/circuits.json
+	 ******************************************************/
+	
+	@Test
+	public void useResponseSpecification() {
 		
 		given().
 		when().
