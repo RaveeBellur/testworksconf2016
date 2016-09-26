@@ -61,6 +61,7 @@ public class RestAssuredExercises4 {
 	 * Use the previously created ResponseSpecification to
 	 * execute the specified checks
 	 * Use /api/f1/2014/1/circuits.json
+	 * Additionally, check that the circuit is located in Melbourne
 	 ******************************************************/
 	
 	@Test

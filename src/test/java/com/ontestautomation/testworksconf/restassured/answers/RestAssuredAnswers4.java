@@ -94,6 +94,7 @@ public class RestAssuredAnswers4 {
 	 * Use the previously created ResponseSpecification to
 	 * execute the specified checks
 	 * Use /api/f1/2014/1/circuits.json
+	 * Additionally, check that the circuit is located in Melbourne
 	 ******************************************************/
 	
 	@Test
@@ -103,6 +104,8 @@ public class RestAssuredAnswers4 {
 		when().
 			get("/api/f1/2014/1/circuits.json").
 		then().
-			spec(respSpec);
+			spec(respSpec).
+			and().
+			body("MRData.CircuitTable.Circuits.Location[0].locality",equalTo("Melbourne"));
 	}
 }
